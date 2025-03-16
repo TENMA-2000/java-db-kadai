@@ -26,11 +26,11 @@ public class Posts_Chapter07 {
 
 			String add = """
 					INSERT INTO posts (user_id, posted_at, post_content, likes) VALUES
-					("1003", "2023-02-08", "昨日は徹夜でした・・", "13"),
-					("1002", "2023-02-08", "お疲れ様です！", "12"),
-					("1003", "2023-02-09", "今日も頑張ります！", "18"),
-					("1001", "2023-02-09", "無理は禁物ですよ！", "17"),
-					("1002", "2023-02-10", "明日から連休ですね！", "20");
+					(1003, "2023-02-08", "昨日は徹夜でした・・", 13),
+					(1002, "2023-02-08", "お疲れ様です！", 12),
+					(1003, "2023-02-09", "今日も頑張ります！", 18),
+					(1001, "2023-02-09", "無理は禁物ですよ！", 17),
+					(1002, "2023-02-10", "明日から連休ですね！", 20);
 					""";
 
 			int rowCnt = 0;
@@ -40,9 +40,9 @@ public class Posts_Chapter07 {
 			System.out.println(rowCnt + "件のレコードが追加されました");
 			
 			
+			int userId = 1002;
 			
-			
-			String search = "SELECT post_content, likes, posted_at FROM posts WHERE user_id = 1002";
+			String search = "SELECT post_content, likes, posted_at FROM posts WHERE user_id = " + userId;
 
 			ResultSet result = statement.executeQuery(search);
 
@@ -51,7 +51,7 @@ public class Posts_Chapter07 {
 				int likes = result.getInt("likes");
 				Date postedAt = result.getDate("posted_at");
 				
-				System.out.println("ユーザーIDが" + search + "のレコードが追加されました");
+				System.out.println("ユーザーIDが" + userId + "のレコードが追加されました");
 
 				System.out
 						.println(result.getRow() + "件目：投稿日時=" + postedAt + "／投稿内容=" + post_content + "／いいね数=" + likes);
