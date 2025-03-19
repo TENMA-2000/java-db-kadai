@@ -18,16 +18,16 @@ public class Scores_Chapter10 {
 					"root",
 					"Ae86,trueno");
 
-			System.out.println("データベース接続成功");
+			System.out.println("データベース接続成功:" + con);
 
 			statement = con.createStatement();
 			String update = "UPDATE scores SET score_math = 95, score_english = 80 WHERE id = 5;";
 
-			System.out.println("レコードの更新を実行します");
+			System.out.println("レコード更新を実行します");
 			int rowCnt = statement.executeUpdate(update);
 			System.out.println(rowCnt + "件のレコードが更新されました");
 
-			String sort = "SELECT * FROM scores ORDER BY id DESC";
+			String sort = "SELECT * FROM scores ORDER BY score_math  DESC, score_english DESC;";
 
 			System.out.println("数学・英語の点数が高い順に並べ替えました");
 			ResultSet result = statement.executeQuery(sort);
