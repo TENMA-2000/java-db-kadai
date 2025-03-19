@@ -20,12 +20,9 @@ public class Posts_Chapter07 {
 					"root",
 					"Ae86,trueno");
 
-			System.out.println("データベース接続成功");
+			System.out.println("データベース接続成功:" + con);
 
 			statement = con.createStatement();
-			
-			String deleteData = "DELETE FROM posts";
-            statement.executeUpdate(deleteData);
 
 			String add = """
 					INSERT INTO posts (user_id, posted_at, post_content, likes) VALUES
@@ -38,7 +35,7 @@ public class Posts_Chapter07 {
 
 			int rowCnt = 0;
 
-			System.out.println("レコードの追加を実行します");
+			System.out.println("レコード追加を実行します");
 			rowCnt = statement.executeUpdate(add);
 			System.out.println(rowCnt + "件のレコードが追加されました");
 
@@ -48,12 +45,12 @@ public class Posts_Chapter07 {
 
 			ResultSet result = statement.executeQuery(search);
 
+			System.out.println("ユーザーIDが" + userId + "のレコードを検索しました");
+
 			while (result.next()) {
 				String post_content = result.getString("post_content");
 				int likes = result.getInt("likes");
 				Date postedAt = result.getDate("posted_at");
-
-				System.out.println("ユーザーIDが" + userId + "のレコードを検索しました");
 
 				System.out
 						.println(result.getRow() + "件目：投稿日時=" + postedAt + "／投稿内容=" + post_content + "／いいね数=" + likes);
